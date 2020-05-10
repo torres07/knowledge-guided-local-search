@@ -1,14 +1,14 @@
-#include <vector>
+#include <list>
 
 #include "../include/Edge.hpp"
 
 class Route {
 	private:
-		std::vector<Edge> route;
+		int * route;
+		int capacity;
         
 	public:
-		Route(std::vector<Edge> route);
-		
-		void addEdgeToRoute(Edge edge);
-		std::vector<Edge> getRoute();
+		Route(int maxSize, int capacity);
+		void addEdgeToRoute(int prevEdgeId, int nextEdgeId);
+		int * getRoute();
 };

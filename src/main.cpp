@@ -14,7 +14,7 @@ int main()
     for (size_t i = 0; i < vertices.size(); i++)
     {
         Vertex vertex = vertices.at(i);
-        cout << vertex.getCoord1() << " - " << vertex.getCoord2() << " : " << vertex.getDemand() << endl;    
+        cout << vertex.getId() << " @ " << "(" << vertex.getCoord1() << ", " << vertex.getCoord2() << ")" << " : " << vertex.getDemand() << endl;    
     }
     
     return 0;

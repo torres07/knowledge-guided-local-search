@@ -70,10 +70,11 @@ std::vector<Vertex> FileParser::parseTxt(string path) {
                     }
                     
                     /** Parse node's position from txt **/
+                    int id = extractIntFromString(line, 0);
                     int coord1 = extractIntFromString(line, 1);
                     int coord2 = extractIntFromString(line, 2);
 
-                    Vertex vertex = Vertex(coord1, coord2, -1);
+                    Vertex vertex = Vertex(id, coord1, coord2, -1);
                     vertices.push_back(vertex);
                 }
 

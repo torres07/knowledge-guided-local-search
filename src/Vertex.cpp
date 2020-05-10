@@ -1,11 +1,19 @@
 #include "../include/Vertex.hpp"
 
-Vertex::Vertex(int coord1, int coord2, float demand) {
+Vertex::Vertex(int id, int coord1, int coord2, float demand) {
+    setId(id);
     setCoord1(coord1);
     setCoord2(coord2);
     setDemand(demand);
 }
 
+void Vertex::setId(int id) {
+    this->id = id;
+}
+
+int Vertex::getId() {
+    return this->id;
+}
 void Vertex::setCoord1(int coord1) {
     this->coord1 = coord1;
 }
