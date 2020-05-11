@@ -1,7 +1,9 @@
+#pragma once
+
 #include <vector>
 #include <string>
 
-#include "../include/Vertex.hpp"
+#include "../include/Edge.hpp"
 
 class FileParser {
     public:

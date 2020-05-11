@@ -1,14 +1,14 @@
+#pragma once
+
 #include <list>
 
 #include "../include/Edge.hpp"
 
 class Route {
-	private:
-		int * route;
-		int capacity;
-        
 	public:
+		int * route;
+		int capacity, currentVertexId;
+
 		Route(int maxSize, int capacity);
-		void addEdgeToRoute(int prevEdgeId, int nextEdgeId);
-		int * getRoute();
+		void addVertexToRoute(int vertexId);
 };

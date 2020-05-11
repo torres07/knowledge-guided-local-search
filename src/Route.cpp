@@ -5,17 +5,12 @@ using namespace std;
 Route::Route(int maxSize, int capacity) {
     this->capacity = capacity;
     this->route = new int [maxSize];
+    this->currentVertexId = 1;
 }
 
-void Route::addEdgeToRoute(int prevEdgeId, int nextEdgeId) {
-    this->route[prevEdgeId] = nextEdgeId;
+void Route::addVertexToRoute(int vertexId) {
+    this->route[this->currentVertexId] = vertexId;
+    this->currentVertexId = vertexId;
 }
-
-int * Route::getRoute() {
-    return this->route;
-}
-
-
-
 
 

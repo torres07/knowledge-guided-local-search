@@ -1,9 +1,9 @@
 #include "../include/Edge.hpp"
 
-Edge::Edge(Vertex v1, Vertex v2) {
-    setV1(v1);
-    setV2(v2);
-}
+// Edge::Edge(Vertex v1, Vertex v2) {
+//     setV1(v1);
+//     setV2(v2);
+// }
 
 void Edge::setV1(Vertex v1) {
     this->v1 = v1;
