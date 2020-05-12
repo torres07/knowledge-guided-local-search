@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../include/Vertex.hpp"
 
 class Edge {

@@ -31,16 +31,19 @@ int FileParser::extractIntFromString(string line, int pos) {
     return -1;
 }
 
-std::vector<Vertex> FileParser::parseTxt(string path) {
-    try
-    {
+pair<vector<Vertex>, int> FileParser::parseTxt(string path) {
+    try {
         vector<Vertex> vertices;   
         int demandPos = 0;
+        int capacity = 0;
                 
         string line;
-        ifstream txtFile (path);
+        ifstream txtFile(path);
 
-        if(txtFile.is_open()) {
+        if (!txtFile.is_open()) {
+            cout << "Could not open: " << path << endl;
+        }
+        else {
             string part = "header";
             while(getline(txtFile, line)) {
                 if(part == "header") {
@@ -56,7 +59,7 @@ std::vector<Vertex> FileParser::parseTxt(string path) {
                     pos = line.find("CAPACITY");
                     if(pos != string::npos) {
                         /** Not being saved anywhere yet **/
-                        int capacity = extractIntFromString(line, 0);
+                        capacity = extractIntFromString(line, 0);
                     }
                 }
 
@@ -71,10 +74,10 @@ std::vector<Vertex> FileParser::parseTxt(string path) {
                     
                     /** Parse node's position from txt **/
                     int id = extractIntFromString(line, 0);
-                    int coord1 = extractIntFromString(line, 1);
-                    int coord2 = extractIntFromString(line, 2);
+                    int x = extractIntFromString(line, 1);
+                    int y = extractIntFromString(line, 2);
 
-                    Vertex vertex = Vertex(id, coord1, coord2, -1);
+                    Vertex vertex = Vertex(id, x, y, -1);
                     vertices.push_back(vertex);
                 }
 
@@ -87,14 +90,16 @@ std::vector<Vertex> FileParser::parseTxt(string path) {
 
                     /** Parse node's demand from txt **/
                     int demand = extractIntFromString(line, 1);
-                    vertices.at(demandPos).setDemand(demand);
+                    vertices.at(demandPos).demand = demand;
                     demandPos++;
                 }
             }
 
             txtFile.close();
         }
-        return vertices;
+        pair <vector<Vertex>, int> vc;
+        vc = std::make_pair(vertices, capacity);
+        return vc;
     }
     catch(const std::exception& e)
     {
