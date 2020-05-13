@@ -1,14 +1,18 @@
-#pragma once
+#ifndef ROUTE_H
+#define ROUTE_H
+#define MAX_SIZE 1005
 
 #include <list>
+#include "../include/Vertex.hpp"
 
-#include "../include/Edge.hpp"
-
-class Route {
+class Route {        
 	public:
-		int * route;
-		int capacity, currentVertexId;
-
+		int capacity;
+		int maxSize;
+		int currentVertexId;
+		std::list<Vertex> route[MAX_SIZE];
 		Route(int maxSize, int capacity);
-		void addVertexToRoute(int vertexId);
+		void addVertexToRoute(Vertex v);
 };
+
+#endif

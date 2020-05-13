@@ -1,16 +1,18 @@
 #include "../include/Route.hpp"
+#include "../include/Vertex.hpp"
 
 using namespace std;
 
 Route::Route(int maxSize, int capacity) {
     this->capacity = capacity;
-    this->route = new int [maxSize];
+    this->maxSize = maxSize;
     this->currentVertexId = 1;
 }
 
-void Route::addVertexToRoute(int vertexId) {
-    this->route[this->currentVertexId] = vertexId;
-    this->currentVertexId = vertexId;
+
+void Route::addVertexToRoute(Vertex v) {
+    this->route[this->currentVertexId].push_back(v);
+    this->currentVertexId = v.id;
 }
 
 

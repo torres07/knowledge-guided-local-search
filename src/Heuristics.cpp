@@ -17,11 +17,13 @@
 **/
 
 bool Heuristics::compare(Vertex v1, Vertex v2) {
-    return (v1.getDemand() < v2.getDemand());
+    return (v1.demand < v2.demand);
 }
 
 std::vector<Route> Heuristics::binPacking(std::vector<Vertex> vertices, int maxCapacity) {
     std::vector<Route> sol;
+    Vertex depot = vertices[0];
+    vertices.erase(vertices.begin());
 
     /** Vertex ids start at 1 instead of 0. **/
     int size = vertices.size() + 1;
@@ -31,9 +33,10 @@ std::vector<Route> Heuristics::binPacking(std::vector<Vertex> vertices, int maxC
         Route r = Route(size, maxCapacity);
         auto it = vertices.begin();
         while( (it != vertices.end()) || (r.capacity == 0) ) {
-            if(r.capacity > (*it).getDemand()) {
-                r.addVertexToRoute((*it).getId());
-                r.capacity -= (*it).getDemand();
+            if(r.capacity > it->demand) {
+                
+                r.addVertexToRoute(*it);
+                r.capacity -= it->demand;
 
                 it = vertices.erase(it);
             } else {
@@ -42,7 +45,7 @@ std::vector<Route> Heuristics::binPacking(std::vector<Vertex> vertices, int maxC
         }
 
         /** Route starts and ends at Depot **/
-        r.addVertexToRoute(1);
+        r.addVertexToRoute(depot);
         sol.push_back(r);
 
     } while (vertices.size() != 0);

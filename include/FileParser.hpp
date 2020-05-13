@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FILE_PARSER_H
+#define FILE_PARSER_H
 
 #include <vector>
 #include <string>
@@ -8,6 +9,7 @@
 class FileParser {
     public:
         static int extractIntFromString(std::string line, int pos);
-        static std::vector<Vertex> parseTxt(std::string path);
-            
+        static std::pair<std::vector<Vertex>, int> parseTxt(std::string path);
 };
+
+#endif
