@@ -17,7 +17,7 @@ int main() {
     cout << "VRP - Vertex Description: " << endl;
     float totalDemand = 0.0;
     for (size_t i = 0; i < vertices.size(); i++) {
-        Vertex vertex = vertices.at(i);
+        Vertex vertex = vertices[i];
         cout << vertex.id << " @ " << "(" << vertex.x << ", " << vertex.y << ")" << " : " << vertex.demand << endl;    
     
         totalDemand += vertex.demand;
@@ -38,16 +38,20 @@ int main() {
         Route r = sol[i];
         
         // Print routes for Bin Packing heuristics
-        cout << "Route " << i << " :   ";
         int vertexId = 1;
-        cout << vertexId << "  ";
+        float cost = 0;
+
+        cout << "Route " << i << " :   " << vertexId << "  ";
         do {
             auto it = r.route[vertexId].begin();
             cout << it->id << "  ";
             vertexId = it->id;
+            cost += it->cost;
         } while(vertexId != 1);
-        cout << " - cap: " << capacity - r.capacity << endl;
+        cout << "- cap: " << capacity - r.capacity << " - cost: " << cost << endl;
     }
+
+    /** Next step: Neighbourhood Search -> Inter and Intra Route Local Search **/
 
     return 0;
 }
