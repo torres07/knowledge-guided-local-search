@@ -30,7 +30,7 @@ std::vector<Route> Heuristics::binPacking(std::vector<Vertex> vertices, int maxC
 
     std::sort(vertices.begin(), vertices.end(), compare);
     do {
-        Route r = Route(size, maxCapacity);
+        Route r = Route(depot, size, maxCapacity);
         auto it = vertices.begin();
         while( (it != vertices.end()) || (r.capacity == 0) ) {
             if(r.capacity > it->demand) {

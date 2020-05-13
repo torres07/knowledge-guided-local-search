@@ -9,9 +9,10 @@ class Route {
 	public:
 		int capacity;
 		int maxSize;
-		int currentVertexId;
+		Vertex currentVertex;
 		std::list<Vertex> route[MAX_SIZE];
-		Route(int maxSize, int capacity);
+		
+		Route(Vertex depot, int maxSize, int capacity);
 		void addVertexToRoute(Vertex v);
 };
 
