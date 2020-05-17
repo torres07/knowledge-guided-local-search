@@ -3,6 +3,7 @@
 
 #include "../include/FileParser.hpp"
 #include "../include/Heuristics.hpp"
+#include "../include/IntraRoute.hpp"
 
 using namespace std;
 
@@ -35,23 +36,27 @@ int main() {
     cout << "Bin Packing - Total Routes: " << sol.size() << endl;
     
     for (size_t i = 0; i < sol.size(); i++) {
-        Route r = sol[i];
-        
-        // Print routes for Bin Packing heuristics
-        int vertexId = 1;
-        float cost = 0;
-
-        cout << "Route " << i << " :   " << vertexId << "  ";
-        do {
-            auto it = r.route[vertexId].begin();
-            cout << it->id << "  ";
-            vertexId = it->id;
-            cost += it->cost;
-        } while(vertexId != 1);
-        cout << "- cap: " << capacity - r.capacity << " - cost: " << cost << endl;
+        cout << "Number: " << i << endl;
+        sol[i].capacity = capacity - sol[i].capacity;
+        sol[i].printRoute();
     }
 
     /** Next step: Neighbourhood Search -> Inter and Intra Route Local Search **/
+
+    /** Applying only Intra-Route Neighborhood Search -> K-opt **/
+    
+    cout << "Applying intra-route optimization: k-opt algorithm..." << endl;
+    Route r = sol[1];
+    r.printRoute();
+    for (size_t i = 0; i < 10; i++) {
+        try {
+            r = IntraRoute::kopt(r, 4);
+        } catch(int e) {
+            cout << "Can't optimize route through K-opt anymore" << endl;
+        }   
+
+        r.printRoute();
+    }
 
     return 0;
 }

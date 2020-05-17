@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EDGE_H
+#define EDGE_H
 
 #include "../include/Vertex.hpp"
 
@@ -16,3 +17,5 @@ class Edge {
 		void setV2(Vertex v2);
 		Vertex getV2();
 };
+
+#endif
