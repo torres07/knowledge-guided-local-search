@@ -4,6 +4,9 @@
 #include "../include/FileParser.hpp"
 #include "../include/Heuristics.hpp"
 
+
+#include "../include/InterRoute.hpp"
+
 using namespace std;
 
 int main() {
@@ -34,24 +37,32 @@ int main() {
     cout << endl;
     cout << "Bin Packing - Total Routes: " << sol.size() << endl;
     
-    for (size_t i = 0; i < sol.size(); i++) {
-        Route r = sol[i];
+    // for (size_t i = 0; i < sol.size(); i++) {
+    //     Route r = sol[i];
         
-        // Print routes for Bin Packing heuristics
-        int vertexId = 1;
-        float cost = 0;
+    //     // Print routes for Bin Packing heuristics
+    //     int vertexId = 1;
+    //     float cost = 0;
 
-        cout << "Route " << i << " :   " << vertexId << "  ";
-        do {
-            auto it = r.route[vertexId].begin();
-            cout << it->id << "  ";
-            vertexId = it->id;
-            cost += it->cost;
-        } while(vertexId != 1);
-        cout << "- cap: " << capacity - r.capacity << " - cost: " << cost << endl;
-    }
+    //     r.listPath();
+
+    //     // cout << "Route " << i << " :   " << vertexId << "  ";
+    //     // do {
+    //     //     auto it = r.route[vertexId].begin();
+    //     //     cout << it->id << "  ";
+    //     //     vertexId = it->id;
+    //     //     cost += it->cost;
+    //     // } while(vertexId != 1);
+    //     cout << "- cap: " << capacity - r.capacity << " - cost: " << cost << endl;
+    // }
 
     /** Next step: Neighbourhood Search -> Inter and Intra Route Local Search **/
+
+    // Or-exchange
+    Route r1 = sol[0];
+    Route r2 = sol[1];
+    cout << "Or-exchange - Before:" << endl;
+    InterRoute::orExchange(r1, r2);
 
     return 0;
 }
